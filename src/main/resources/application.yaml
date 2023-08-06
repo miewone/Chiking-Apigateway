@@ -25,14 +25,21 @@ spring:
     name: gateway-service
   cloud:
     gateway:
-      routes:
-        - id: first-service
-          uri: lb://FIRST-SERVICE
-          predicates:
-            - Path=/first-service/**
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/**
+      discovery:
+        locator:
+          enabled: true
+#      routes:
+#        - id: first-service
+#          uri: lb://FIRST-SERVICE
+#          predicates:
+#            - Path=/first-service/**
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/user-service/**
+#        - id: collection-service
+#          uri: lb://COLLECTION-SERVICE
+#          predicates:
+#            - Path=/collection-service/**
 #          filters:
 #            - LoggingFilter
