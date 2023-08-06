@@ -1,0 +1,15 @@
+package com.example.apigatewayservice.filter.properties;
+
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+/**
+ * Created by wgPark on 2023-07-31.
+ */
+@Data
+@ConfigurationProperties(prefix = "custom.global.filter")
+public class CustomGlobalFilterProperties {
+    private String baseMessage;
+    private boolean preLogger;
+    private boolean postLogger;
+}

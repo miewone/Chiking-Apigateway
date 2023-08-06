@@ -1,0 +1,38 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry : true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+custom:
+  logging:
+    filter:
+      baseMessage: Logging filter
+      preLogger: true
+      postLogger: true
+  global:
+    filter:
+      baseMessage: Spring Cloud Gateway Global Filter
+      preLogger: true
+      postLogger: true
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: first-service
+          uri: lb://FIRST-SERVICE
+          predicates:
+            - Path=/first-service/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+#          filters:
+#            - LoggingFilter
